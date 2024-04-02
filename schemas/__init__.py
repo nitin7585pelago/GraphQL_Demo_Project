@@ -1,21 +1,21 @@
 import graphene
 from graphene_sqlalchemy import SQLAlchemyObjectType
-from db import Product as ProductModel, Option as OptionModel, Unit as UnitModel, session
+from db import Product, Option, Unit, session
 
 
 class ProductType(SQLAlchemyObjectType):
     class Meta:
-        model = ProductModel
+        model = Product
 
 
 class OptionType(SQLAlchemyObjectType):
     class Meta:
-        model = OptionModel
+        model = Option
 
 
 class UnitType(SQLAlchemyObjectType):
     class Meta:
-        model = UnitModel
+        model = Unit
 
 
 class QueryType(graphene.ObjectType):
@@ -24,13 +24,13 @@ class QueryType(graphene.ObjectType):
     units = graphene.List(UnitType)
     
     def resolve_products(self, info):
-        return ProductModel.query.all()
+        return Product.query.all()
     
     def resolve_options(self, info):
-        return OptionModel.query.all()
+        return Option.query.all()
     
     def resolve_units(self, info):
-        return UnitModel.query.all()
+        return Unit.query.all()
 
 
 class CreateProduct(graphene.Mutation):
@@ -41,7 +41,7 @@ class CreateProduct(graphene.Mutation):
     product = graphene.Field(ProductType)
     
     def mutate(self, info, name, description=None):
-        product = ProductModel(name=name, description=description)
+        product = Product(name=name, description=description)
         session.add(product)
         session.commit()
         return CreateProduct(product=product)
