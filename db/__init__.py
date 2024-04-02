@@ -12,7 +12,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 
-connection_str = "sqlite:///"+ os.path.join(BASE_DIR, 'posts.db')
+connection_str = "sqlite:///"+ os.path.join(BASE_DIR, 'inventory.db')
 
 Base = declarative_base()
 
