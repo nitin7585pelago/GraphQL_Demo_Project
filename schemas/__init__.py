@@ -13,42 +13,14 @@ class Product(SQLAlchemyObjectType):
         
         
 class Option(SQLAlchemyObjectType):
-        
-        
-class Option(SQLAlchemyObjectType):
     class Meta:
         model = Option
-        
-        
-class Unit(SQLAlchemyObjectType):
+
         
         
 class Unit(SQLAlchemyObjectType):
     class Meta:
         model = Unit
-        
-        
-class Category(SQLAlchemyObjectType):
-    class Meta:
-        model = Category
-        
-        
-class Supplier(SQLAlchemyObjectType):
-    class Meta:
-        model = Supplier
-        
-        
-class Query(graphene.ObjectType):
-    all_products = graphene.List(Product)
-    all_options = graphene.List(Option)
-    all_units = graphene.List(Unit)
-    all_categories = graphene.List(Category)
-    all_suppliers = graphene.List(Supplier)
-    product = graphene.Field(Product, id=graphene.Int())
-    option = graphene.Field(Option, id=graphene.Int())
-    unit = graphene.Field(Unit, id=graphene.Int())
-    category = graphene.Field(Category, id=graphene.Int())
-    supplier = graphene.Field(Supplier, id=graphene.Int())
         
         
 class Category(SQLAlchemyObjectType):
@@ -122,5 +94,4 @@ class Mutation(graphene.ObjectType):
     delete_supplier = DeleteSupplier.Field()
     
     
-schema = graphene.Schema(query=Query, mutation=Mutation)
 schema = graphene.Schema(query=Query, mutation=Mutation)
